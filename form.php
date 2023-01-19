@@ -1,8 +1,18 @@
 ﻿<?php
 header("Content-Type:text/html;charset=utf-8");
-require_once("../../db/db_connect.php");
+//require_once("../../db/db_connect.php");
+/**
+* 时区列表：https://www.php.net/manual/zh/timezones.php
+* 上海：Asia/Shanghai
+* 香港：Asia/Hong_Kong
+*/
 
-$favorites = isset($_POST['favorites']) ? $_POST['favorites'] : array();
+$timezone="Asia/Hong_Kong";
+date_default_timezone_set($timezone);
+
+
+
+$favorites = isset($_POST['favorites']) ? $_POST['favorites'] : array('');
 $eName = isset($_POST['eName']) ? trim($_POST['eName']) : '';
 $birthDateY = isset($_POST['birthDateY']) ? trim($_POST['birthDateY']) : '';
 $birthDateM = isset($_POST['birthDateM']) ? trim($_POST['birthDateM']) : '';
@@ -71,33 +81,47 @@ if (empty($interests)) {
 }
 
 if ($messages == '') {
-  $strSP = "{call OMG_Event.dbo.[usp_WebEditClubMingMember](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
-  $strParam = array(
-    array(join(',', $favorites), SQLSRV_PARAM_IN),
-    array($eName, SQLSRV_PARAM_IN),
-    array($birthDate, SQLSRV_PARAM_IN),
-    array($email, SQLSRV_PARAM_IN),
-    array($phoneNumber, SQLSRV_PARAM_IN),
-    array($sex, SQLSRV_PARAM_IN),
-    array($ageBracket, SQLSRV_PARAM_IN),
-    array($educationLevel, SQLSRV_PARAM_IN),
-    array($jobPosition, SQLSRV_PARAM_IN),
-    array($industry, SQLSRV_PARAM_IN),
-    array($monthlyIncome, SQLSRV_PARAM_IN),
-    array($familyMonthlyIncome, SQLSRV_PARAM_IN),
-    array(join(',', $interests), SQLSRV_PARAM_IN),
-    array($addition, SQLSRV_PARAM_IN),
-    array($doNotPromote, SQLSRV_PARAM_IN),
-    array($_SERVER["REMOTE_ADDR"], SQLSRV_PARAM_IN)
+  $data_file = __DIR__ .'/data.csv';
+  $fp = fopen($data_file, 'a');  
+  
+  
+  //$strSP = "{call OMG_Event.dbo.[usp_WebEditClubMingMember](?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+  $strParams = array(
+    '您較喜愛的雜誌'=>join('，', array_values($favorites)), 
+    '英文姓名'=>$eName, 
+    '出生年月日'=>$birthDate, 
+    'Email'=>$email,
+    '聯絡電話'=>$phoneNumber,
+    '性別'=>$sex,
+    '年齡'=>$ageBracket,
+    '教育程度'=>$educationLevel,
+    '職業'=>$jobPosition,
+    '行業'=>$industry,//行業
+    '個人收入(月薪)'=>$monthlyIncome,//個人收入（月薪)
+    '家庭收入（每月）'=>$familyMonthlyIncome, 
+    '感興趣資訊'=>join('，', $interests), 
+    '希望我們的雜誌增加哪一些内容'=>str_replace(',',"，",$addition), 
+    '不同意接收推廣資料'=>$doNotPromote, 
+    'IP'=>$_SERVER["REMOTE_ADDR"],
+    '提交時間'=>date("Y-m-d H:i:s")
   );
 
-  $result = $db->call_query($strSP, $strParam);
-
-  $res = $db->insert_id($result);
-  //file_get_contents("")
-  if (!$res) {
-    $messages = '提交失敗' . $delimiter;
+  
+  if(!file_exists($data_file) || filesize($data_file) == 0) {     
+    $res = fputcsv($fp,array_keys($strParams));  
+    if (!$res) {
+      $messages = '写入文件失败' . $delimiter;
+    }
   }
+  if ($messages == ''){
+    $res = fputcsv($fp,array_values($strParams));
+    fclose($fp); 
+  
+    if (!$res) {
+      $messages = '提交失敗' . $delimiter;
+    }
+  }
+
 }
 if ($messages == '') {
   header("Location:thankyou.html");
