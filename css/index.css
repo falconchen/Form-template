@@ -1,0 +1,313 @@
+body, html {
+	font-family: Arial, Verdana, Tahoma;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: rgba(0, 0, 0, .87);
+	background: #000000;
+	width: 100%;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	text-decoration: none;
+}
+
+img {
+	width: 100%;
+	max-width: 950px;
+}
+
+.clear {
+	clear: both;
+}
+
+.bg_grey {
+	background: #ebf4f9;
+}
+
+.guest {
+	color: black;
+	margin-bottom: 25px;
+	font-weight: bold;
+}
+
+.level_item {
+	margin-top: 20px;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+#content {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0px auto;
+}
+
+.banner {
+	width: 100%;
+	text-align: center;
+}
+
+.mes_content {
+	max-width: 950px;
+	width: 100%;
+	margin: 0px auto;
+	box-sizing: border-box;
+	padding: 10px 3%;
+}
+
+.mes_content .tittle p {
+	font-size: 15px;
+	font-weight: bold;
+	color: #fef2b6;
+	width: 100%;
+	line-height: 38px;
+	padding: 10px 0px;
+}
+
+.mes_content .detailes {
+	max-width: 550px;
+	width: 100%;
+	margin: 20px auto;
+	text-align: center;
+}
+
+h3 {
+	color: #ffffff;
+	font-size: 15px;
+	padding-bottom: 20px;
+	letter-spacing: 3px;
+	font-weight: 4px;
+	line-height: 20px;
+}
+
+.mes_content .detailes table {
+	width: 100%;
+	background: #fff;
+	line-height: 36px;
+	margin: 15px 0px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.mes_content .detailes table tr td {
+	padding: 0px 60px;
+	text-align: left;
+}
+
+.mes_content .detailes table tr td:nth-child(1) {
+	color: #014779;
+}
+
+.forms_con {
+	max-width: 950px;
+	width: 100%;
+	margin: 0px auto;
+	box-sizing: border-box;
+	padding: 10px 3%;
+	padding: 20px 0px;
+}
+
+.forms {
+	width: 100%;
+	background: #fff;
+	font-size: 15px;
+}
+
+.forms .forms_con {
+	max-width: 960px;
+	width: 100%;
+	margin: 0px auto;
+}
+
+.forms_con .form {
+	width: 100%;
+	position: relative;
+	padding: 20px 5px;
+}
+
+.forms_con .form .label {
+	margin-bottom: 10px;
+}
+
+.forms_con .form .form-check-inline {
+	display: inline-flex;
+	align-items: center;
+	margin-right: 15px;
+}
+
+.forms_con .form .form-check-inline label {
+	white-space: nowrap;
+}
+
+.form .delete_this {
+	position: absolute;
+	cursor: pointer;
+	right: 0px;
+	top: 5px;
+	max-width: 75px;
+}
+
+.forms_con .form .item {
+	margin-top: 20px;
+	position: relative;
+	margin-bottom: 20px;
+	height: 70px;
+}
+
+.forms_con .form #email {
+	margin-bottom: 0px;
+	height: 50px;
+}
+
+.forms_con .form .heightAuto {
+	height: auto!important;
+	line-height: 27px;
+}
+
+.forms_con .form .item>.item {
+	float: left;
+	width: 30%;
+	margin-right: 1%;
+}
+
+.forms_con .form .item .la {
+	display: inline-block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+	background: #fff;
+	width: 100%;
+	line-height: 32px;
+}
+
+.forms_con .form .item .select_line {
+	line-height: 31px!important;
+}
+
+.forms_con .form .item .style_same {
+	font-size: 15px;
+	display: inline-block;
+	outline: none;
+	height: 32px;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+
+.forms_con .form .item .error, .forms_con .form .level_item .error {
+	line-height: 30px;
+	color: red;
+	font-size: 15px;
+}
+
+.checkbox_style {
+	margin-right: 8%;
+}
+
+.add_guest {
+	max-width: 75px;
+	margin: 0px auto;
+}
+
+.add_guest img {
+	width: 100%;
+	cursor: pointer;
+}
+
+.btn {
+	width: 16%;
+	height: 50px;
+	margin: 0px auto;
+	padding-bottom: 14px;
+}
+
+.btn>div {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	color: black;
+	cursor: pointer;
+	letter-spacing: 4px;
+}
+
+.checkbox {
+	height: 15px;
+	width: 15px;
+	margin-right: 5px;
+}
+
+.error {
+	display: none;
+}
+
+.bottom_ {
+	max-width: 960px;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0px auto;
+	padding: 20px 13px;
+}
+
+.bottom_ h5 {
+	line-height: 35px;
+	color: black;
+	font-size: 17px;
+}
+
+.bottom_ p {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.padding_left {
+	display: inline-block;
+	padding-left: 25px;
+}
+
+@media screen and (max-width:950px) {
+	.forms .forms_con {
+		padding: 0px 3%;
+	}
+}
+
+@media screen and (max-width:500px) {
+	.mes_content .detailes table tr td {
+		padding: 0px 10px;
+	}
+	.forms .forms_con {
+		padding: 0px 2%;
+	}
+	.btn {
+		width: 34%;
+	}
+	.forms_con .form .item {
+		height: 62px;
+	}
+	.forms_con .form {
+		padding: 32px 5px;
+	}
+	.form .delete_this {
+		max-width: 55px;
+		right: 1%;
+	}
+}
+
+@media screen and (max-width:350px) {
+	.mes_content .detailes table tr td {
+		padding: 0px 5px;
+	}
+}
+
+h5 {
+	color: white;
+}
+
+a:link, a:visited {
+	color: #ffa939;
+}
